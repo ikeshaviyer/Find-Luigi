@@ -21,7 +21,7 @@ let timeInterval;
 
 const characters = ["mario", "wario", "yoshi"];
 const spriteSpeed = 2; // Speed of movement (px per frame)
-const totalSprites = 50; // Increased the number of sprites on screen
+const totalSprites = 80; // Increased the number of sprites on screen
 const bannedWords = ["badword1", "badword2", "offensive", "idiot"]; // List of banned words
 let playerName = "";
 
