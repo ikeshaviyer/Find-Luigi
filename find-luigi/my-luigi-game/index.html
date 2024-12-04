@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Luigi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Find Luigi!</h1>
+  <div id="stats">
+    <p>Clicks: <span id="clicks">0</span></p>
+    <p>Time: <span id="time">0</span>s</p>
+  </div>
+  <div id="game-area"></div>
+  <div id="result"></div>
+  
+  <!-- Leaderboard Section -->
+  <div id="leaderboard">
+    <h2>Leaderboard</h2>
+    <table id="leaderboard-table">
+      <tr>
+        <th>Name</th>
+        <th>Time (s)</th>
+        <th>Clicks</th>
+      </tr>
+    </table>
+    <input type="text" id="player-name" placeholder="Enter your name" />
+    <button id="submit-score">Submit Score</button>
+    <div id="error-message"></div>
+  </div>
+  
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
