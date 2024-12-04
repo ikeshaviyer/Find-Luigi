@@ -1,3 +1,5 @@
+/* Importing Custom Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 /* General Body Styling */
 body {
   font-family: 'Roboto', Arial, sans-serif; /* Custom font family */
@@ -111,6 +113,3 @@ button:hover {
 #start-button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds shadow on hover */
 }
-
-/* Importing Custom Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
