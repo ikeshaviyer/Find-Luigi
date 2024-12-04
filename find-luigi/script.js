@@ -17,28 +17,9 @@ const totalSprites = 50; // Increased the number of sprites on screen
 const bannedWords = ["badword1", "badword2", "offensive", "idiot"]; // List of banned words
 let playerName = "";
 
-// Get today's date string in YYYY-MM-DD format
-function getTodayDate() {
-  return new Date().toISOString().split("T")[0];
-}
-
 // Set up leaderboard data in localStorage if it doesn't exist
 if (!localStorage.getItem("leaderboard")) {
   localStorage.setItem("leaderboard", JSON.stringify([]));
-}
-
-// Check if the daily seed exists; if not, generate one
-function getDailySeed() {
-  const todayDate = getTodayDate();
-  let dailySeed = localStorage.getItem("dailySeed");
-
-  if (!dailySeed || localStorage.getItem("lastSubmittedDate") !== todayDate) {
-    // Generate a new seed for today if it doesn't exist
-    dailySeed = Math.floor(Math.random() * 10000); // Random seed for the day
-    localStorage.setItem("dailySeed", dailySeed);
-  }
-
-  return dailySeed;
 }
 
 // Load the leaderboard and check if the player has already submitted today
@@ -83,7 +64,7 @@ function submitScore() {
 
   // Check if player has already submitted today
   const lastSubmittedDate = localStorage.getItem("lastSubmittedDate");
-  const today = getTodayDate();
+  const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD format
 
   if (lastSubmittedDate === today) {
     errorMessage.textContent = "You can only submit once per day!";
@@ -114,12 +95,8 @@ function setupGame() {
   // Reset game area
   gameArea.innerHTML = "";
 
-  // Get today's seed and use it for randomization
-  const dailySeed = getDailySeed();
-  const random = new Math.seedrandom(dailySeed);
-
   // Place Luigi and distractors
-  const luigiIndex = Math.floor(random() * totalSprites); // Choose one random slot for Luigi
+  const luigiIndex = Math.floor(Math.random() * totalSprites); // Choose one random slot for Luigi
 
   for (let i = 0; i < totalSprites; i++) {
     const sprite = document.createElement("div");
@@ -129,13 +106,13 @@ function setupGame() {
       sprite.style.backgroundImage = "url('assets/luigi.png')";
       sprite.dataset.character = "luigi";
     } else {
-      const randomCharacter = characters[Math.floor(random() * characters.length)];
+      const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
       sprite.style.backgroundImage = `url('assets/${randomCharacter}.png')`;
       sprite.dataset.character = randomCharacter;
     }
 
-    sprite.style.left = `${random() * 500}px`;
-    sprite.style.top = `${random() * 500}px`;
+    sprite.style.left = `${Math.random() * 500}px`;
+    sprite.style.top = `${Math.random() * 500}px`;
 
     const direction = {
       x: Math.random() > 0.5 ? spriteSpeed : -spriteSpeed,
