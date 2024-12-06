@@ -36,8 +36,13 @@ body {
   position: absolute;
   width: 100px;
   height: 100px;
-  background-size: cover;
-  cursor: pointer;
+  pointer-events: none;
+  /* background-size: cover;
+  cursor: pointer; */
+}
+
+.character.active {
+  pointer-events: auto;
 }
 
 /* Leaderboard Styling */

@@ -94,17 +94,16 @@ function submitScore() {
 }
 
 // Setup game logic
+// Enable pointer events for sprites on setup
 function setupGame() {
   clicks = 0;
   clicksElement.textContent = clicks;
   resultElement.textContent = "";
   startTime = Date.now();
 
-  // Reset game area
   gameArea.innerHTML = "";
 
-  // Place Luigi and distractors
-  const luigiIndex = Math.floor(Math.random() * totalSprites); // Choose one random slot for Luigi
+  const luigiIndex = Math.floor(Math.random() * totalSprites);
 
   for (let i = 0; i < totalSprites; i++) {
     const sprite = document.createElement("div");
@@ -113,6 +112,7 @@ function setupGame() {
     if (i === luigiIndex) {
       sprite.style.backgroundImage = "url('assets/luigi.png')";
       sprite.dataset.character = "luigi";
+      sprite.classList.add("active"); // Enable clicks for Luigi
     } else {
       const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
       sprite.style.backgroundImage = `url('assets/${randomCharacter}.png')`;
@@ -132,7 +132,7 @@ function setupGame() {
     gameArea.appendChild(sprite);
   }
 
-  timer = setInterval(updateSprites, 16); // 60 FPS
+  timer = setInterval(updateSprites, 16);
   updateTime();
 }
 
@@ -162,42 +162,42 @@ function updateSprites() {
 
 // Handle sprite clicks
 function handleClick(e) {
-  clicks++;
-  clicksElement.textContent = clicks;
+  const clickedSprite = e.target;
 
-  const character = e.target.dataset.character;
+  // Ensure the clicked sprite is valid
+  if (!clickedSprite.classList.contains("character")) return;
+
+  const character = clickedSprite.dataset.character;
+
+  // Load the sprite into an offscreen canvas for transparency check
   const img = new Image();
-  let clickedPosition = { x: e.clientX, y: e.clientY };
-
-  // Set up canvas to check transparency
-  img.src = e.target.style.backgroundImage.slice(5, -2); // Extract the image URL from style (removes "url()" wrapper)
+  img.src = clickedSprite.style.backgroundImage.slice(5, -2); // Extract URL from "url()"
 
   img.onload = () => {
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
 
-    // Set canvas size to match the image
+    // Set canvas dimensions to match the sprite
     canvas.width = img.width;
     canvas.height = img.height;
 
-    // Draw the image on the canvas
+    // Draw the image onto the canvas
     ctx.drawImage(img, 0, 0);
 
-    // Get the pixel data of the image
-    const imageData = ctx.getImageData(0, 0, img.width, img.height);
-    const pixels = imageData.data;
+    // Determine the relative click position within the sprite
+    const rect = clickedSprite.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    const offsetY = e.clientY - rect.top;
 
-    // Get the position of the click relative to the element's position
-    const rect = e.target.getBoundingClientRect();
-    const offsetX = clickedPosition.x - rect.left;
-    const offsetY = clickedPosition.y - rect.top;
+    // Get the pixel data at the clicked position
+    const pixelData = ctx.getImageData(offsetX, offsetY, 1, 1).data;
+    const alpha = pixelData[3]; // Alpha channel
 
-    // Get the index of the pixel in the image data array
-    const pixelIndex = (offsetY * img.width + offsetX) * 4; // 4 channels per pixel (RGBA)
-    const alpha = pixels[pixelIndex + 3]; // Alpha channel (transparency)
-
-    // If the clicked area is not transparent, continue with the normal click logic
     if (alpha > 0) {
+      // Non-transparent click: Process the character logic
+      clicks++;
+      clicksElement.textContent = clicks;
+
       if (character === "luigi") {
         clearInterval(timer);
         clearInterval(timeInterval);
@@ -205,11 +205,12 @@ function handleClick(e) {
         const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
         resultElement.textContent = `You found Luigi in ${clicks} clicks and ${elapsedTime}s! 🎉`;
 
-        submitScoreButton.style.display = "block"; // Show submit button after finding Luigi
+        submitScoreButton.style.display = "block"; // Show submit button
       }
     }
   };
 }
+
 
 
 // Update timer display
