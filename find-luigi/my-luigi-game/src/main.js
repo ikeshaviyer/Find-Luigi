@@ -21,7 +21,7 @@ let timeInterval;
 
 const characters = ["mario", "wario", "yoshi"];
 const spriteSpeed = 2; // Speed of movement (px per frame)
-const totalSprites = 100; // Increased the number of sprites on screen
+const totalSprites = 80; // Increased the number of sprites on screen
 const bannedWords = ["badword1", "badword2", "offensive", "idiot"]; // List of banned words
 let playerName = "";
 
@@ -166,17 +166,51 @@ function handleClick(e) {
   clicksElement.textContent = clicks;
 
   const character = e.target.dataset.character;
+  const img = new Image();
+  let clickedPosition = { x: e.clientX, y: e.clientY };
 
-  if (character === "luigi") {
-    clearInterval(timer);
-    clearInterval(timeInterval);
+  // Set up canvas to check transparency
+  img.src = e.target.style.backgroundImage.slice(5, -2); // Extract the image URL from style (removes "url()" wrapper)
 
-    const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
-    resultElement.textContent = `You found Luigi in ${clicks} clicks and ${elapsedTime}s! 🎉`;
+  img.onload = () => {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
 
-    submitScoreButton.style.display = "block"; // Show submit button after finding Luigi
-  }
+    // Set canvas size to match the image
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    // Draw the image on the canvas
+    ctx.drawImage(img, 0, 0);
+
+    // Get the pixel data of the image
+    const imageData = ctx.getImageData(0, 0, img.width, img.height);
+    const pixels = imageData.data;
+
+    // Get the position of the click relative to the element's position
+    const rect = e.target.getBoundingClientRect();
+    const offsetX = clickedPosition.x - rect.left;
+    const offsetY = clickedPosition.y - rect.top;
+
+    // Get the index of the pixel in the image data array
+    const pixelIndex = (offsetY * img.width + offsetX) * 4; // 4 channels per pixel (RGBA)
+    const alpha = pixels[pixelIndex + 3]; // Alpha channel (transparency)
+
+    // If the clicked area is not transparent, continue with the normal click logic
+    if (alpha > 0) {
+      if (character === "luigi") {
+        clearInterval(timer);
+        clearInterval(timeInterval);
+
+        const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
+        resultElement.textContent = `You found Luigi in ${clicks} clicks and ${elapsedTime}s! 🎉`;
+
+        submitScoreButton.style.display = "block"; // Show submit button after finding Luigi
+      }
+    }
+  };
 }
+
 
 // Update timer display
 function updateTime() {
