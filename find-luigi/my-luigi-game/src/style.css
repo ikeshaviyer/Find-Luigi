@@ -34,14 +34,11 @@ body {
 /* Character Styling */
 .character {
   position: absolute;
+  z-index: 1;
   width: 100px;
   height: 100px;
   background-size: cover;
   cursor: pointer;
-  pointer-events: none;
-}
-
-.character.active {
   pointer-events: auto;
 }
 

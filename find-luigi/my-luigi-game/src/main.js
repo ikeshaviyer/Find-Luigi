@@ -164,54 +164,28 @@ function updateSprites() {
 function handleClick(e) {
   const clickedSprite = e.target;
 
+  // Bring the clicked sprite to the top of the stacking order
+  clickedSprite.style.zIndex = 1000;
+
   // Ensure the clicked sprite is valid
   if (!clickedSprite.classList.contains("character")) return;
 
   const character = clickedSprite.dataset.character;
 
-  // Load the sprite into an offscreen canvas for transparency check
-  const img = new Image();
-  img.src = clickedSprite.style.backgroundImage.slice(5, -2); // Extract URL from "url()"
+  clicks++;
+  clicksElement.textContent = clicks;
 
-  img.onload = () => {
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
+  if (character === "luigi") {
+    // Game ends when Luigi is clicked
+    clearInterval(timer);
+    clearInterval(timeInterval);
 
-    // Set canvas dimensions to match the sprite
-    canvas.width = img.width;
-    canvas.height = img.height;
+    const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
+    resultElement.textContent = `You found Luigi in ${clicks} clicks and ${elapsedTime}s! 🎉`;
 
-    // Draw the image onto the canvas
-    ctx.drawImage(img, 0, 0);
-
-    // Determine the relative click position within the sprite
-    const rect = clickedSprite.getBoundingClientRect();
-    const offsetX = e.clientX - rect.left;
-    const offsetY = e.clientY - rect.top;
-
-    // Get the pixel data at the clicked position
-    const pixelData = ctx.getImageData(offsetX, offsetY, 1, 1).data;
-    const alpha = pixelData[3]; // Alpha channel
-
-    if (alpha > 0) {
-      // Non-transparent click: Process the character logic
-      clicks++;
-      clicksElement.textContent = clicks;
-
-      if (character === "luigi") {
-        clearInterval(timer);
-        clearInterval(timeInterval);
-
-        const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
-        resultElement.textContent = `You found Luigi in ${clicks} clicks and ${elapsedTime}s! 🎉`;
-
-        submitScoreButton.style.display = "block"; // Show submit button
-      }
-    }
-  };
+    submitScoreButton.style.display = "block"; // Show submit button
+  }
 }
-
-
 
 // Update timer display
 function updateTime() {
