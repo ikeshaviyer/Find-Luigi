@@ -1,5 +1,6 @@
 /* Importing Custom Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 /* General Body Styling */
 body {
   font-family: 'Roboto', Arial, sans-serif; /* Custom font family */
@@ -38,7 +39,16 @@ body {
   height: 100px;
   background-size: cover;
   cursor: pointer;
+  pointer-events: none; /* Disable all pointer events for the sprite */
 }
+
+.character img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto; /* Enable pointer events only for the visible image */
+}
+
 
 /* Leaderboard Styling */
 #leaderboard {

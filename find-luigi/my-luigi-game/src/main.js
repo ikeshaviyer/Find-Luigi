@@ -109,28 +109,32 @@ function setupGame() {
   for (let i = 0; i < totalSprites; i++) {
     const sprite = document.createElement("div");
     sprite.className = "character";
-
+  
+    const img = document.createElement("img");
+  
     if (i === luigiIndex) {
-      sprite.style.backgroundImage = "url('assets/luigi.png')";
+      img.src = "/assets/luigi.png";
       sprite.dataset.character = "luigi";
     } else {
       const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
-      sprite.style.backgroundImage = `url('assets/${randomCharacter}.png')`;
+      img.src = `/assets/${randomCharacter}.png`;
       sprite.dataset.character = randomCharacter;
     }
-
+  
     sprite.style.left = `${Math.random() * 500}px`;
     sprite.style.top = `${Math.random() * 500}px`;
-
+  
     const direction = {
       x: Math.random() > 0.5 ? spriteSpeed : -spriteSpeed,
       y: Math.random() > 0.5 ? spriteSpeed : -spriteSpeed,
     };
     sprite.dataset.direction = JSON.stringify(direction);
-
+  
+    sprite.appendChild(img); // Append the image to the sprite
     sprite.addEventListener("click", handleClick);
     gameArea.appendChild(sprite);
   }
+  
 
   timer = setInterval(updateSprites, 16); // 60 FPS
   updateTime();
