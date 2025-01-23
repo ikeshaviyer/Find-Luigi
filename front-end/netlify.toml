@@ -1,0 +1,43 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "./functions"
+
+[dev]
+  command = "npm run dev"
+  port = 8888
+  targetPort = 5173
+  publish = "dist"
+  cwd = "."
+  framework = "#custom"
+  functions = "./functions"
+
+[context.production.environment]
+  VITE_API_URL = "https://findluigi.netlify.app"  # For production environment
+  GOOGLE_APPLICATION_CREDENTIALS = "carbide-calling-444504-u4-ecf05a5b1e5d.json" 
+  GCP_PROJECT_ID = "carbide-calling-444504-u4"
+
+[context.deploy-preview.environment]
+  VITE_API_URL = "http://localhost:8888"  # For deploy previews (similar to local dev)
+  GOOGLE_APPLICATION_CREDENTIALS = "carbide-calling-444504-u4-ecf05a5b1e5d.json"
+  GCP_PROJECT_ID = "carbide-calling-444504-u4"
+
+[context.dev.environment]
+  VITE_API_URL = "http://localhost:8888"  # For local dev
+  GOOGLE_APPLICATION_CREDENTIALS = "functions/carbide-calling-444504-u4-ecf05a5b1e5d.json"
+  GCP_PROJECT_ID = "carbide-calling-444504-u4"
+
+[functions]
+  directory = "functions"
+  external_node_modules = ["express"]
+  node_bundler = "esbuild"
+  included_files = ["*.json"]
+
+  [functions.scheduled-clear]
+  schedule = "0 0 6 * * *"  # Run at 6:00 AM UTC (12:00 AM CST)
+
+[[redirects]]
+  force = true
+  from = "/api/*"
+  to = "/.netlify/functions/index/:splat"
+  status = 200

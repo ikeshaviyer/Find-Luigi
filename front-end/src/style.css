@@ -1,0 +1,365 @@
+/* Importing Custom Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* General Body Styling */
+body {
+  font-family: 'Roboto', Arial, sans-serif; /* Custom font family */
+  text-align: center;
+  background-color: #111217;
+  color: #d8d8d8; /* Default text color */
+  margin: 0;
+}
+
+/* Game Stats Section */
+#stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 18px;
+  margin: 10px 0;
+  /* Custom text color for stats */
+}
+
+#game-container {
+  display: flex;
+  align-items: flex-start;   /* Align items to the top */
+  justify-content: center; 
+  gap: 20px;
+}
+
+#randomize-button {
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+  margin-top: 20px;          /* Add some top margin to the button */
+}
+
+/* Game Area */
+#game-area {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin: 20px auto;
+  background-color: #0a0a0a;
+  border: 2px solid #333333;
+  overflow: hidden;
+  border-radius: 10px; /* Rounded corners for the game area */
+}
+
+/* Character Styling */
+.character {
+  position: absolute;
+  z-index: 1;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Leaderboard Styling */
+#leaderboard {
+  margin-top: 20px;
+  color: #eeeeee; /* Custom text color */
+}
+
+/* General table styling with rounded corners */
+#leaderboard-table {
+  margin: 0 auto;
+  border-collapse: separate; /* Use 'separate' for proper border radius handling */
+  border-spacing: 0; /* Remove gaps between cells */
+  width: 50%;
+  text-align: center;
+  background-color: #0a0a0a; /* Table background */
+  color: #ffffff; /* Table text color */
+  border-radius: 12px; /* Rounded corners */
+  overflow: hidden; /* Ensures content respects the rounded corners */
+}
+
+/* Header row styling */
+#leaderboard-table thead tr {
+  background-color: #5ab652; /* background for the header row */
+  font-weight: bold;
+  color: #111217; /* Dark text for contrast */
+}
+
+/* General styling for all cells */
+#leaderboard-table th,
+#leaderboard-table td {
+  border: 0px solid #ffffff;
+  padding: 8px;
+}
+
+/* Alternating row styles */
+#leaderboard-table tbody tr:nth-child(odd) {
+  background-color: #181a20; /* Light gray for odd rows */
+  color: #ffffff; /* Dark text */
+}
+
+#leaderboard-table tbody tr:nth-child(even) {
+  background-color: #1e2027; /* Slightly lighter gray for even rows */
+  color: #ffffff; /* Dark text */
+}
+
+/* Hover effect for rows */
+#leaderboard-table tbody tr:hover {
+  background-color: #3e4253; /* Light yellow on hover */
+  cursor: pointer;
+}
+
+#leaderboard #pagination {
+  display: flex;
+  justify-content: center; 
+  margin-top: 10px;       
+}
+
+#leaderboard #pagination button { 
+  margin: 0 5px;          
+  padding: 8px 16px;      /* Adjust padding to accommodate the arrows */
+}
+
+#leaderboard #prev-page {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23000' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center center; /* Adjust position to accommodate padding */
+}
+
+#leaderboard #next-page {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23000' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center center; /* Adjust position to accommodate padding */
+}
+
+/* General styling for the text box */
+#player-name {
+  width: 20%; /* Adjust the width as needed */
+  padding: 6px; /* Adds space inside the text box */
+  font-size: 15px; /* Adjusts the font size */
+  border: 2px solid #d8d8d8; /* Border color and width */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #f9f9f9; /* Background color */
+  color: #333; /* Text color */
+  outline: none; /* Removes the blue outline on focus */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions for focus effects */
+}
+
+/* Placeholder text styling */
+#player-name::placeholder {
+  color: #aaa; /* Placeholder text color */
+  font-style: italic; /* Optional: italic style for placeholder */
+}
+
+/* Focus state styling */
+#player-name:focus {
+  border-color: #ffcc00; /* Border color on focus */
+  box-shadow: 0 0 8px rgba(255, 204, 0, 0.5); /* Glow effect on focus */
+}
+
+/* The pop-up background */
+#Post-Game-Pop-Up {
+  position: fixed; /* Fixed position on the screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: none; /* Hide the modal by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensures the pop-up is above other content */
+}
+
+/* Pop-up content styling */
+#pop-up-content {
+  background-color: #171d29;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px; /* Adjust the width as needed */
+  height: 300px;
+  position: relative;
+  text-align: center;
+}
+
+/* Close button styling */
+#close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Close button hover effect */
+#close-btn:hover {
+  color: #ff0000;
+}
+
+/* Text box for name input */
+#player-name {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #d8d8d8;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  color: #333;
+  outline: none;
+  margin-top: 10px;
+}
+
+/* Styling the label */
+label {
+  display: block;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+
+#submit-score:hover {
+  background-color: #5ab652;
+}
+
+#submit-score {
+  position: absolute; /* Add this line */
+  top: 240px; /* Adjust as needed */
+  left: 100px; /* Adjust as needed */
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: Roboto, Arial, sans-serif;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+
+#error-message {
+  margin-top: 75px;
+  color: red;
+  font-size: 14px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+
+/* Custom Buttons */
+button {
+  font-size: 16px;
+  font-family: 'Roboto', Arial, sans-serif; /* Custom font for buttons */
+  padding: 10px 20px;
+  color: #0a0a0a;
+  background-color: #eeeeee; /* Button background color */
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #5ab652;
+  transform: scale(1.05); /* Slightly enlarges on hover */
+}
+
+#start-button {
+  margin-top: 20px auto;
+}
+
+#start-button:hover {
+  background-color: #5ab652;
+}
+
+#luigi-image {
+  width: 90px;    /* Adjust the width as needed */
+  height: auto;   /* Maintain aspect ratio */
+  display: block;  
+  margin: 0 auto;  
+}
+
+/* The pop-up background */
+#Instructions-Pop-Up {
+  position: fixed; /* Fixed position on the screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: none; /* Hide the modal by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensures the pop-up is above other content */
+}
+
+/* Intro Pop-up content styling */
+#intro-content {
+  background-color: #171d29;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px; /* Adjust the width as needed */
+  height: 350px;
+  position: relative;
+  text-align: center;
+}
+
+#randomize-button {
+  display: block;
+  margin: 20px auto;
+  font-size: 16px;
+  font-family: 'Roboto', Arial, sans-serif; /* Custom font for buttons */
+  padding: 10px 20px;
+  color: #0a0a0a;
+  background-color: #eeeeee; /* Button background color */
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+#randomize-button:hover {
+  background-color: #5ab652 !important;  /* Change background on hover */
+}
+
+#mute-button {
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 20px; /* Add some padding for the icon */
+  background-position: center center;
+}
+
+#mute-button[data-muted="true"] { /* Target the muted state */
+  background-image: url("../public/assets/Muted.png"); 
+}
+
+#mute-button[data-muted="false"] { /* Target the unmuted state */
+  background-image: url("../public/assets/Unmuted.png");
+}
+
+.button-container {
+  display: flex; 
+  justify-content: center; /* Center the buttons within the container */
+  align-items: center;    /* Vertically center the buttons (optional) */
+  margin-top: 5px;
+  gap: 10px;
+}
+
+#reset-timer {
+  margin-bottom: 10px;
+  padding-bottom: 10px; /* Adds padding below the text */
+  color: #979797;
+}

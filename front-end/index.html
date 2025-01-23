@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Luigi</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <h1>Find Luigi!</h1>
+  <div id="stats">
+    <p>Clicks: <span id="clicks">0</span></p>
+    <p>Time: <span id="time">0</span>s</p>
+    <button id="mute-button" data-muted="false"></button> 
+  </div>
+  <div id="game-container">
+    <div id="game-area"></div>
+  </div>
+  <button id="randomize-button" style="display: none;">Randomize Game</button>
+  <div id="result"></div>
+
+  
+  
+<!-- Leaderboard Section -->
+<div id="leaderboard">
+  <h2>Leaderboard</h2>
+  <div>
+    <span id="reset-timer">Resets in: 00:00:00</span>
+  </div>
+  <table id="leaderboard-table">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Time (s)</th>
+        <th>Clicks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--Player Rows go here-->
+      </tbody>
+  </table>
+  <div id="pagination"> <button id="prev-page"></button> <button id="next-page"></button> </div>
+</div>
+
+<!-- Post-Game-Pop-Up Section -->
+<div id="Post-Game-Pop-Up">
+  <div id="pop-up-content">
+    <button id="close-btn">&times;</button> <!-- Close button (X) -->
+    <h2 id="Congratulations">Join the Ranks!</h2></p>
+    <p><strong>Time:</strong> <span id="game-time">0s</span></p>
+    <p><strong>Clicks:</strong> <span id="game-clicks">0</span></p>
+    
+    <label for="player-name">Enter your name:</label>
+    <input type="text" id="player-name" placeholder="Enter your name" />
+    <div id="error-message"></div>
+    <button id="submit-score">Submit Score</button>
+  </div>
+</div>
+
+<div id="Instructions-Pop-Up" style="display: flex;">
+  <div id="intro-content">
+    <h2>How to Play</h2>
+    <p>Click on the characters to find Luigi. The faster you find him, the higher you'll rank on the
+      leaderboard!</p>
+      <p>Leaderboard resets everyday</p>
+      <p><strong>12:00 AM CST</strong></p>
+      <img src="public/assets/luigi.png" alt="Luigi" id="luigi-image">
+
+    <div class="button-container"> 
+      <button id="Start">Start Game</button>
+    </div>
+
+  </div>
+</div>
+
+  
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
