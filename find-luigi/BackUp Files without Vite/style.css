@@ -1,0 +1,116 @@
+/* General Body Styling */
+body {
+  font-family: 'Roboto', Arial, sans-serif; /* Custom font family */
+  text-align: center;
+  background-color: #111217;
+  color: #d8d8d8; /* Default text color */
+  margin: 0;
+}
+
+/* Game Stats Section */
+#stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 18px;
+  margin: 10px 0;
+  /* Custom text color for stats */
+}
+
+/* Game Area */
+#game-area {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin: 20px auto;
+  background-color: #0a0a0a;
+  border: 2px solid #333333;
+  overflow: hidden;
+  border-radius: 10px; /* Rounded corners for the game area */
+}
+
+/* Character Styling */
+.character {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  cursor: pointer;
+}
+
+/* Leaderboard Styling */
+#leaderboard {
+  margin-top: 20px;
+  color: #eeeeee; /* Custom text color */
+}
+
+#leaderboard-table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: 80%;
+  text-align: center;
+  background-color: #0a0a0a; /* Table background */
+  color: #ffffff; /* Table text color */
+}
+
+#leaderboard-table th,
+#leaderboard-table td {
+  border: 1px solid #d8d8d8;
+  padding: 8px;
+}
+
+#submit-score {
+  display: none; /* Hide initially */
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: 'Roboto', Arial, sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#submit-score:hover {
+  background-color: #808080; /* Darker color on hover */
+}
+
+#error-message {
+  color: red;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+/* Custom Buttons */
+button {
+  font-size: 16px;
+  font-family: 'Roboto', Arial, sans-serif; /* Custom font for buttons */
+  padding: 10px 20px;
+  color: #0a0a0a;
+  background-color: #c5c5c5; /* Button background color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #808080; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly enlarges on hover */
+}
+
+#start-button {
+  margin-top: 20px;
+  font-size: 18px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#start-button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds shadow on hover */
+}
+
+/* Importing Custom Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
