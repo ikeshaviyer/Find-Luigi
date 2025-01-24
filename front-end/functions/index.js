@@ -18,25 +18,7 @@ const app = express();
 
 const serviceAccount = {
 
-  "type": "service_account",
-
-  "project_id": "carbide-calling-444504-u4",
-
-  "private_key_id": "ecf05a5b1e5d580ecc00512c20947eba73a8fc98",
-
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCleOwFmEjmeWrb\naGe7e3MJMnR9nOms2V5KYLcHKkF/Rqu/xVuzlFgzuRNoYnxuebYGsrgRzbeoFzes\nbnJS+BIteN1rhpQb5i8GIi8S3hkuOhTzoqKqAAhs39KLINBQXRdSXf2U5wuvwtX0\nPntd9g/eMpcj4HROPiUY1Or6EihnXte4TOtRnkt5oG8NTDOC9FJmRjIh+SY1zK59\nMDUNzfPfCSIuvzM8xebjwYLsr9F7VFnSeELVHJxzco1LomnUZzAjwq3Af40CK29r\nE/O2l1a2M7OqKRqYomNbKi2oRJk7768/HzYr2wBIwZwDWrsuJxZG+TS0c0qVGCPC\nynDqZXw1AgMBAAECggEAAUljEFrmQL0kSGKKELwQUigr9umEeT+44gG34p7HouHt\nlu/Q2gUnornYvkwwGSNWd9JdhrhvgyS2Hf5mQRxcmEH8746S9Pi1xL6VEDtrKcV/\nhWeBvhlsYRZZBcZBHwcGoQpBmkF9czgV+552oMl3iffIPPif15dYDN8bv7oy1LrX\nK32oaauKSYQfBiRgWrt6wNLb+MApChWVc9k3EQCCat8C9soGQ5hGrhsNQ2HIuiym\nECILvPYqheUZil47Z8XonfBjlwY6kOGvdlq5SkMTGoH6pzTlW+Re4B+9Al0Yq6mB\nJN7HciGKojJESt0pV6GGi/uRxwF3aHUs/rjqX9dpYQKBgQDexKBXRtf18Ivre/bO\nuZpi6ovBxKpwu3txJnVDrLG8vsfTw3OqA0jT9BOH1/KCzN6nNWVmy/N6hi+AhOvt\n5eVbrtR1GSAXmZKHrANQ8SZ8JR7UF+ju85EV/gs49l0s2epq2VI+usWczczwuUuE\npFfx8MkVJp0vrip7tEhrDNjwVQKBgQC+KDUzx50UlqbOJQhqKj4Aegc3eNJWzXdt\ncjiXW/um2IIgrdz2prFcdbsK20tMo2ea8ttCy/s2e1s3onophU1cjq3GJiaWPbuC\ngcQOvGlpy50d7FKX/MQ1eirt2dkv8sfdMu6Uk8ILa8g+UkdUaaXyXUhfkRltDyPs\ngT488OS8YQKBgHmvYIKsQRWoE1ZLvdLIkevMgREUc6Hm15REVLPl5qTadd9YGZtZ\n9fNJlU2UCXWnoUwnH7/aUqKwH8yNTy8BcJr3Ujiww9YAXolbzefuAn637DIg6W11\ngOBJiCnSca0pUCKTmZiIf5+az4MDRJwtBZk0VTMHh79e3Pf7z78iInKNAoGAPjGy\nbPQdyU0Y05XDMc4NJ2TCFX+b9C4RoKdaIQ9BuKlZrkyPV9Dfc6lB+uQMtc1AJqrF\n0gwbZw9jn0eyAwCJc/tqlMOHnV4lhSLiOBuhsquZAN95iCJxHjiN7+tvoMIcYpm0\n9L17GvcusEuC7vX7A9FEyZUQpt3r1v/SlmYHuiECgYBEWsL4A76DFeUnzv8iD3x2\nN8s0Bg+Y78BOy/nHieO851H6hYFW0+PWabX4EK2SqvyHxoIUSuH5igcD9fR3JJU0\nLPAT/CM9yNRgmHN+Qm1KnJufH9iUVv7ZJ2bVNaa1w9cP2u2Ml1LeCzbecDIcxElV\ngxAIkE3gaG3cX8jsR1umng==\n-----END PRIVATE KEY-----\n",
-
-  "client_email": "firebase-adminsdk-wiq4l@carbide-calling-444504-u4.iam.gserviceaccount.com",
-
-  "client_id": "111822769061911286651",
-
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-
-  "token_uri": "https://oauth2.googleapis.com/token",
-
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-wiq4l%40carbide-calling-444504-u4.iam.gserviceaccount.com"
+  "YOUR GOOGLE API KEY"
 
 };
 
